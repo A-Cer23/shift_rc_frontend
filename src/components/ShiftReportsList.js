@@ -55,7 +55,7 @@ class ShiftReportList extends Component {
                 <div className="row pb-3">
                     <div className="col">
                         
-                        <button type="button" className="btn btn-outline-success btn-sm " onClick={() => this.props.router.navigate("/shiftreport")}>Select Pay Period</button>
+                        <button type="button" className="btn btn-outline-success btn-sm " onClick={() => this.props.router.navigate("/payperiod/select")}>Select Pay Period</button>
                     </div>
 
                     <div className="col text-end" >

@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "http://192.168.2.253:8080/shiftreports/";
+const API_URL = "http://10.0.0.187:8080/shiftreports/";
 
 
 const createShiftReport = (startDate, endDate, startTime, endTime) => {
@@ -75,6 +75,7 @@ const ShiftReportService = {
     getShiftReportById,
     updateShiftReport,
     deleteShiftReport,
+    payPeriodRequest
 };
 
 export default ShiftReportService;

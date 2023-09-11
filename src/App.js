@@ -16,6 +16,8 @@ import NoAuth from "./common/NoAuth";
 import RouteUnavailable from "./components/RouteUnavailable";
 import ShiftReportsList from "./components/ShiftReportsList";
 import { Container } from "react-bootstrap";
+import SelectPayPeriodForm from "./components/SelectPayPeriodForm";
+import PayPeriodResult from "./components/PayPeriodResult";
 
 class App extends Component {
   constructor(props) {
@@ -141,6 +143,8 @@ class App extends Component {
             <Route path="/shiftreports" element={<RequireAuth> <ShiftReportsList /> </RequireAuth>} />
             <Route path="/shiftreport/:id" element={<RequireAuth> <ShiftReportForm /> </RequireAuth>} />
             <Route path="/shiftreport" element={<RequireAuth> <ShiftReportForm /> </RequireAuth>} />
+            <Route path="/payperiod/select" element={<RequireAuth> <SelectPayPeriodForm /> </RequireAuth>} />
+            <Route path="/payperiod/result" element={<RequireAuth> <PayPeriodResult /> </RequireAuth>} />
             <Route path="*" element={<RouteUnavailable />} />
           </Routes>
         </Container>
