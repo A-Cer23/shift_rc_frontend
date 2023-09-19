@@ -3,6 +3,7 @@ import { withRouter } from "../common/with-router";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 
 const required = value => {
@@ -23,6 +24,7 @@ class SelectPayPeriodForm extends Component {
         this.onHourlyWageChange = this.onHourlyWageChange.bind(this);
         this.endDatePastStartDate = this.endDatePastStartDate.bind(this);
         this.handleSelectPayperiod = this.handleSelectPayperiod.bind(this);
+        this.onCancelClick = this.onCancelClick.bind(this);
         this.state = {
             fromDate: "",
             toDate: "",
@@ -30,7 +32,6 @@ class SelectPayPeriodForm extends Component {
             loading: false,
             message: "",
         }
-
     }
 
     onCancelClick(e) {
@@ -91,7 +92,15 @@ class SelectPayPeriodForm extends Component {
         this.form.validateAll();
     
         if (this.checkBtn.context._errors.length === 0) {
-            this.props.router.navigate("/payperiod", {fromDate: this.state.fromDate, toDate: this.state.toDate, hourlyWage: this.state.hourlyWage});
+
+          const dataToSend = {
+            fromDate: this.state.fromDate,
+            toDate: this.state.toDate,
+            hourlyWage: this.state.hourlyWage
+          };
+
+          this.props.router.navigate("/payperiod/result", {state: {data: dataToSend}});
+        
         } else {
             this.setState({
             loading: false
@@ -144,19 +153,15 @@ class SelectPayPeriodForm extends Component {
                 </div>
   
                 <div className="form-group">
-                  <label htmlFor="startTime">Hourly Wage</label>
+                  <label htmlFor="hourlyWage">Hourly Wage</label>
                   <Input
                     type="number"
                     className="form-control"
-                    name="startTime"
+                    name="hourlyWage"
                     value={this.state.hourlyWage}
                     onChange={this.onHourlyWageChange}
                     validations={[required]}
-                    onKeyPress={(event) => {
-                        if (!/[0-9]/.test(event.key)) {
-                          event.preventDefault();
-                        }
-                      }}
+                    
                   />
                 </div>
   

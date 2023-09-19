@@ -9,29 +9,36 @@ class PayPeriodResult extends Component {
         super(props);
         this.state = {
             totalHourlyWage: "",
+            fromDate: this.props.router.location.state.data.fromDate,
+            hourlyWage: this.props.router.location.state.data.hourlyWage,
+            toDate: this.props.router.location.state.data.toDate
         }
     }
 
     componentDidMount() {
-        ShiftReportService.payPeriodRequest(this.props.location.state.fromDate, 
-            this.props.location.state.toDate, 
-            this.props.location.state.hourlyWage)
+        ShiftReportService.payPeriodRequest(this.state.fromDate, 
+            this.state.toDate, 
+            this.state.hourlyWage)
             .then(response => {
+                console.log(response);
                 this.setState({
-                    totalHourlyWage: response.data.totalHourlyWage
+                    totalHourlyWage: response.data
                 })
             })
     }
 
     render() {
         return (
-            <div className="text-light">
-                <h1>Pay Period Result</h1>
-                <p>From: {this.props.location.state.fromDate}</p>
-                <p>To: {this.props.location.state.toDate}</p>
-                <p>Hourly Wage: {this.props.location.state.hourlyWage}</p>
-                <p>Total Hourly Wage: {this.state.totalHourlyWage}</p>
+            <div className="container d-flex justify-content-center">
+                <div className="text-light">
+                <h1 className="pb-4">Pay Period Result</h1>
+                <p>From: {this.state.fromDate}</p>
+                <p>To: {this.state.toDate}</p>
+                <p>Hourly Wage: ${this.state.hourlyWage}/hr</p>
+                <p>Total Hourly Wage: ${this.state.totalHourlyWage}</p>
+                </div>
             </div>
+            
         )
     }
 }

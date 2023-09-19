@@ -1,11 +1,8 @@
 import { Component } from "react";
 import { withRouter } from "../common/with-router";
 import ShiftReportService from "../services/shift_report_service";
-import { Button, Pagination, Table } from "react-bootstrap";
-import { useReactTable } from '@tanstack/react-table'
+import { Table } from "react-bootstrap";
 
-
- 
 
 class ShiftReportList extends Component {
     constructor(props) {
@@ -37,11 +34,10 @@ class ShiftReportList extends Component {
         )
     }
 
+
     onShiftReportClick(id) {
         this.props.router.navigate("/shiftreport/" + id);
     }
-
-    
 
 
     render() {
@@ -63,10 +59,6 @@ class ShiftReportList extends Component {
                     </div>
 
                 </div>
-
-                
-
-                
 
                 <div className="container-sm">
                     <Table hover variant="dark">
@@ -93,11 +85,7 @@ class ShiftReportList extends Component {
                         </tbody>
                     </Table>
                 </div>
-
                 
-
-                
-
             </div>
         )
     }

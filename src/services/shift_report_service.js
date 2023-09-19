@@ -1,12 +1,12 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "http://10.0.0.187:8080/shiftreports/";
+const SHIFT_REPORT_URL = process.env.REACT_APP_API_URL + "shiftreports/";
 
 
 const createShiftReport = (startDate, endDate, startTime, endTime) => {
 
-    return axios.post(API_URL + "create", { 
+    return axios.post(SHIFT_REPORT_URL + "create", { 
         startDate, endDate, startTime, endTime
     }, {
         headers: authHeader()
@@ -19,7 +19,7 @@ const getShiftReports = () => {
         headers: authHeader()
     }
 
-    return axios.get(API_URL + "get", config)
+    return axios.get(SHIFT_REPORT_URL + "get", config)
 }
 
 const getShiftReportById = (id) => {
@@ -29,7 +29,7 @@ const getShiftReportById = (id) => {
         headers: authHeader()
     }
 
-    return axios.get(API_URL + "getbyid", config);
+    return axios.get(SHIFT_REPORT_URL + "getbyid", config);
 };
 
 const updateShiftReport = (startDate, endDate, startTime, endTime, id) => {
@@ -41,7 +41,7 @@ const updateShiftReport = (startDate, endDate, startTime, endTime, id) => {
     }
 
 
-    return axios.put(API_URL + "update", {  
+    return axios.put(SHIFT_REPORT_URL + "update", {  
         startDate, endDate, startTime, endTime
     }, config);
 }
@@ -53,19 +53,19 @@ const deleteShiftReport = (id) => {
         headers: authHeader()
     }
 
-    return axios.delete(API_URL + "delete", config);
+    return axios.delete(SHIFT_REPORT_URL + "delete", config);
 }
 
 const payPeriodRequest = (fromDate, toDate, wagePerHour) => {
 
     const config = {
         headers: authHeader(),
-        data: {
+        params: {
             fromDate, toDate, wagePerHour
         }
     }
 
-    return axios.get(API_URL + "payperiod", config)
+    return axios.get(SHIFT_REPORT_URL + "payperiod", config)
 }
 
 
